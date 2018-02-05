@@ -1,0 +1,12 @@
+{
+    "name": "core.type.style",
+    "version": "1.0.0",
+    "description": "type style",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "ido-ofir",
+    "repository": "https://github.com/ido-ofir/core.type.style.git",
+    "license": "ISC"
+}
