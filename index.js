@@ -11,7 +11,7 @@ module.exports = {
             },
             {
                 key: 'description',
-                description: 'describe the style',
+                description: 'describes the style',
                 type: 'string'
             },
             {
@@ -20,39 +20,12 @@ module.exports = {
                 type: 'object',
             }
         ],
-        build(definition, _super, done) {
+        build(definition, done) {
 
             var core = this;
 
-            var { name, dependencies, get, bindings } = definition; 
+            done(definition.body);
 
-            _super({
-                name: name,
-                dependencies: dependencies,
-                get(modules) {
-                    modules = [].slice.call(arguments);
-                    var Component = core.createComponent(name, get.apply(this, modules));
-                    var View = core.createComponent(name, {
-                        render() {
-
-                            return core.bind(bindings, (state) => {
-                                var props = core.assign({}, this.props, state);
-                                core.monitor('views.render', { name: name, props: props })
-                                return core.createElement({
-                                    type: Component,
-                                    props: props,
-                                    children: props.children
-                                });
-                            });
-                        }
-                    });
-                    return View;
-                }
-            }, (view) => {
-                core.components[name] = view;
-                core.views[name] = view;
-                done && done(view);
-            });
         }
     }]
 };
